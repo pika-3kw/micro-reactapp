@@ -11,7 +11,7 @@ const PostList = () => {
   const { posts, setPosts } = useContext(PostContext);
 
   const getPosts = async () => {
-    const res = await axios.get("http://localhost:4001/posts");
+    const res = await axios.get("http://localhost:4003/posts");
     const _posts = res.data;
     setPosts(_posts);
   };

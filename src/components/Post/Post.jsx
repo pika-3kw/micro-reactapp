@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 
 import "./Post.css";
 
@@ -10,19 +9,7 @@ import { PostContext } from "../../contexts/post/store";
 const Post = ({ post }) => {
   const { title, content, _id, comments } = post;
 
-  const { setComments, addComment } = useContext(PostContext);
-
-  useEffect(() => {
-    const getComments = async () => {
-      const res = await axios.get(
-        `http://localhost:4002/posts/${_id}/comments`
-      );
-      const _comments = res.data.comments;
-      setComments(_id, _comments);
-    };
-
-    getComments();
-  }, [post]);
+  const { addComment } = useContext(PostContext);
 
   return (
     <div className="post">
