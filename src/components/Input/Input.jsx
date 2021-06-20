@@ -1,6 +1,6 @@
 import "./Input.css";
 
-const Input = ({ value, label, onChange, name }) => {
+const Input = ({ value, label, onChange, name, placeholder }) => {
   const onTextChange = (e) => {
     if (onChange) {
       onChange(e);
@@ -15,6 +15,7 @@ const Input = ({ value, label, onChange, name }) => {
         className="input"
         value={value}
         onChange={onTextChange}
+        placeholder={placeholder}
       />
     </div>
   );
