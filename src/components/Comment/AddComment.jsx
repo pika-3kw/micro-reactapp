@@ -22,6 +22,7 @@ const AddComment = ({ postId, addComment }) => {
       console.log("You can input comment!");
       return;
     }
+
     try {
       const res = await axios.post(
         `http://localhost:4002/posts/${postId}/comments`,
@@ -30,7 +31,7 @@ const AddComment = ({ postId, addComment }) => {
         }
       );
       const _comment = res.data;
-      addComment(_comment);
+      addComment(postId, _comment);
       setComment("");
     } catch (error) {
       console.log(error);

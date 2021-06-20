@@ -18,10 +18,37 @@ const PostStore = ({ children }) => {
     setPostStore((current) => ({ ...current, posts }));
   };
 
+  const addComment = (postId, comment) => {
+    console.log(postId, comment);
+    const postIdx = postStore.posts.findIndex((post) => post._id === postId);
+    let _posts = postStore.posts;
+
+    if (postIdx >= 0) {
+      let postComments = _posts[postIdx].comments || [];
+
+      postComments.push(comment);
+
+      _posts[postIdx].comments = postComments;
+      setPostStore((current) => ({ ...current, posts: _posts }));
+    }
+  };
+
+  const setComments = (postId, comments) => {
+    const postIdx = postStore.posts.findIndex((post) => post._id === postId);
+    let _posts = postStore.posts;
+
+    if (postIdx >= 0) {
+      _posts[postIdx].comments = comments;
+      setPostStore((current) => ({ ...current, posts: _posts }));
+    }
+  };
+
   const postProvider = {
     ...postStore,
     addPost,
     setPosts,
+    addComment,
+    setComments,
   };
 
   return (

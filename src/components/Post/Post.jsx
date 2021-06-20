@@ -1,19 +1,16 @@
-import "./Post.css";
+import axios from "axios";
+import { useEffect, useContext } from "react";
 
-import { useEffect, useState } from "react";
+import "./Post.css";
 
 import CommentList from "../Comment/CommentList";
 import AddComment from "../Comment/AddComment";
-import axios from "axios";
+import { PostContext } from "../../contexts/post/store";
 
 const Post = ({ post }) => {
-  const { title, content, _id } = post;
+  const { title, content, _id, comments } = post;
 
-  const [comments, setComment] = useState([]);
-
-  const addComment = (newComment) => {
-    setComment((current) => [...current, newComment]);
-  };
+  const { setComments, addComment } = useContext(PostContext);
 
   useEffect(() => {
     const getComments = async () => {
@@ -21,7 +18,7 @@ const Post = ({ post }) => {
         `http://localhost:4002/posts/${_id}/comments`
       );
       const _comments = res.data.comments;
-      setComment(_comments);
+      setComments(_id, _comments);
     };
 
     getComments();
