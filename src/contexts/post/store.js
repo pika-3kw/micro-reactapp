@@ -19,7 +19,6 @@ const PostStore = ({ children }) => {
   };
 
   const addComment = (postId, comment) => {
-    console.log(postId, comment);
     const postIdx = postStore.posts.findIndex((post) => post._id === postId);
     let _posts = postStore.posts;
 
