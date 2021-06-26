@@ -8,7 +8,7 @@ const CommentList = ({ comments = [] }) => {
   return (
     <ul className="comment-list">
       {comments.map((comment, idx) => (
-        <Comment key={comment._id || idx} comment={comment.content} />
+        <Comment key={comment._id || idx} comment={comment} />
       ))}
     </ul>
   );
